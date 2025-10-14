@@ -2,7 +2,7 @@ use thiserror::Error;
 
 #[derive(Debug, Clone, Error)]
 pub enum Error {
-    #[error("required")]
+    #[error("値が必須です")]
     Required,
     #[error("{0}")]
     Message(Box<crate::Error>),

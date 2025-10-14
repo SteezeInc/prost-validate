@@ -28,7 +28,7 @@ where
             _ => {
                 return Err(Error::new(
                     name.to_string(),
-                    errors::Error::InvalidRules("unexpected timestamp rules".to_string()),
+                    errors::Error::InvalidRules("Timestamp 用のルールが不正です".to_string()),
                 ))
             }
         };

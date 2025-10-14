@@ -99,24 +99,24 @@ macro_rules! format_err {
 mod tests {
     #[test]
     fn test_format_err() {
-        let err = format_err!("field", "something wrong");
+        let err = format_err!("field", "問題が発生しました");
         assert_eq!(
             err.to_string(),
-            "\"field\": invalid validation rules: something wrong"
+            "\"field\": 無効な検証ルール: 問題が発生しました"
         );
 
-        let err = format_err!("field", "something wrong: {}", "value");
+        let err = format_err!("field", "問題が発生しました: {}", "value");
         assert_eq!(
             err.to_string(),
-            "\"field\": invalid validation rules: something wrong: value"
+            "\"field\": 無効な検証ルール: 問題が発生しました: value"
         );
 
         let field = "field";
         let value = "value";
-        let err = format_err!(field, "something wrong: {value}");
+        let err = format_err!(field, "問題が発生しました: {value}");
         assert_eq!(
             err.to_string(),
-            "\"field\": invalid validation rules: something wrong: value"
+            "\"field\": 無効な検証ルール: 問題が発生しました: value"
         );
     }
 
@@ -135,6 +135,6 @@ mod tests {
         let f = &details.bad_request().unwrap().field_violations;
         assert_eq!(f.len(), 1);
         assert_eq!(f[0].field, "field");
-        assert_eq!(f[0].description, "required");
+        assert_eq!(f[0].description, "値が必須です");
     }
 }

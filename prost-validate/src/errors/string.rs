@@ -2,55 +2,55 @@ use thiserror::Error;
 
 #[derive(Debug, Clone, Error)]
 pub enum Error {
-    #[error("must be equal to \"{0}\"")]
+    #[error("値は \"{0}\" と一致しなければなりません")]
     Const(String),
-    #[error("characters length must be equal to {0}")]
+    #[error("文字数は {0} でなければなりません")]
     Len(usize),
-    #[error("characters length must be greater than or equal to {0}")]
+    #[error("文字数は {0} 以上でなければなりません")]
     MinLen(usize),
-    #[error("characters length must be less than or equal to {0}")]
+    #[error("文字数は {0} 以下でなければなりません")]
     MaxLen(usize),
-    #[error("bytes length must be equal to {0}")]
+    #[error("バイト数は {0} でなければなりません")]
     LenBytes(usize),
-    #[error("bytes length must be greater than or equal to {0}")]
+    #[error("バイト数は {0} 以上でなければなりません")]
     MinLenBytes(usize),
-    #[error("bytes length must be less than or equal to {0}")]
+    #[error("バイト数は {0} 以下でなければなりません")]
     MaxLenBytes(usize),
-    #[error("must match pattern \"{0}\"")]
+    #[error("\"{0}\" のパターンに一致しなければなりません")]
     Pattern(String),
-    #[error("must have prefix \"{0}\"")]
+    #[error("\"{0}\" を接頭辞に持つ必要があります")]
     Prefix(String),
-    #[error("must have suffix \"{0}\"")]
+    #[error("\"{0}\" を接尾辞に持つ必要があります")]
     Suffix(String),
-    #[error("must contain \"{0}\"")]
+    #[error("\"{0}\" を含む必要があります")]
     Contains(String),
-    #[error("must not contain \"{0}\"")]
+    #[error("\"{0}\" を含んではいけません")]
     NotContains(String),
-    #[error("must be in {0:?}")]
+    #[error("値は {0:?} のいずれかでなければなりません")]
     In(Vec<String>),
-    #[error("must not be in {0:?}")]
+    #[error("値は {0:?} のいずれかであってはなりません")]
     NotIn(Vec<String>),
-    #[error("must be a valid email address")]
+    #[error("有効なメールアドレスでなければなりません")]
     Email,
-    #[error("must be a valid hostname")]
+    #[error("有効なホスト名でなければなりません")]
     Hostname,
-    #[error("must be a valid IP address")]
+    #[error("有効な IP アドレスでなければなりません")]
     Ip,
-    #[error("must be a valid IPv4 address")]
+    #[error("有効な IPv4 アドレスでなければなりません")]
     Ipv4,
-    #[error("must be a valid IPv6 address")]
+    #[error("有効な IPv6 アドレスでなければなりません")]
     Ipv6,
-    #[error("must be a valid URI")]
+    #[error("有効な URI でなければなりません")]
     Uri,
-    #[error("must be a valid URI ref")]
+    #[error("有効な URI 参照でなければなりません")]
     UriRef,
-    #[error("must be a valid hostname or IP address")]
+    #[error("有効なホスト名または IP アドレスでなければなりません")]
     Address,
-    #[error("must be a valid UUID")]
+    #[error("有効な UUID でなければなりません")]
     Uuid,
-    #[error("must be a valid HTTP Header name")]
+    #[error("有効な HTTP ヘッダー名でなければなりません")]
     HttpHeaderName,
-    #[error("must be a valid HTTP Header value")]
+    #[error("有効な HTTP ヘッダー値でなければなりません")]
     HttpHeaderValue,
 }
 

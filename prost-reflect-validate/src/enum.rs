@@ -10,7 +10,7 @@ macro_rules! enum_rules {
     ($rules:ident) => {
         match &$rules.r#type {
             Some(Type::Enum(rules)) => rules,
-            _ => return Err(format_err!("unexpected enum rules")),
+            _ => return Err(format_err!("Enum 用のルールが不正です")),
         }
     };
 }

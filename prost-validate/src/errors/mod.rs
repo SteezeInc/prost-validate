@@ -16,7 +16,7 @@ pub mod timestamp;
 
 #[derive(Debug, Clone, Error)]
 pub enum Error {
-    #[error("invalid validation rules: {0}")]
+    #[error("無効な検証ルール: {0}")]
     InvalidRules(String),
     #[error(transparent)]
     Bool(bool::Error),

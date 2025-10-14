@@ -2,23 +2,23 @@ use thiserror::Error;
 
 #[derive(Debug, Clone, Error)]
 pub enum Error {
-    #[error("must be equal to {0:?}")]
+    #[error("値は {0:?} と一致しなければなりません")]
     Const(time::Duration),
-    #[error("must be less than {0:?}")]
+    #[error("値は {0:?} 未満でなければなりません")]
     Lt(time::Duration),
-    #[error("must be less than or equal to {0:?}")]
+    #[error("値は {0:?} 以下でなければなりません")]
     Lte(time::Duration),
-    #[error("must be greater than {0:?}")]
+    #[error("値は {0:?} より大きくなければなりません")]
     Gt(time::Duration),
-    #[error("must be greater than or equal to {0:?}")]
+    #[error("値は {0:?} 以上でなければなりません")]
     Gte(time::Duration),
-    #[error("must be in range {0}{1:?}, {2:?}{3}")]
+    #[error("値は {0}{1:?}、{2:?}{3} の範囲内でなければなりません")]
     InRange(String, time::Duration, time::Duration, String),
-    #[error("must not be in range {0}{1:?}, {2:?}{3}")]
+    #[error("値は {0}{1:?}、{2:?}{3} の範囲内にあってはなりません")]
     NotInRange(String, time::Duration, time::Duration, String),
-    #[error("must be in {0:?}")]
+    #[error("値は {0:?} のいずれかでなければなりません")]
     In(Vec<time::Duration>),
-    #[error("must not be in {0:?}")]
+    #[error("値は {0:?} のいずれかであってはなりません")]
     NotIn(Vec<time::Duration>),
 }
 

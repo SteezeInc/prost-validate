@@ -2,29 +2,29 @@ use thiserror::Error;
 
 #[derive(Debug, Clone, Error)]
 pub enum Error {
-    #[error("must be equal to {0:?}")]
+    #[error("値は {0:?} と一致しなければなりません")]
     Const(time::OffsetDateTime),
-    #[error("must be less than {0:?}")]
+    #[error("値は {0:?} 未満でなければなりません")]
     Lt(time::OffsetDateTime),
-    #[error("must be less than or equal to {0:?}")]
+    #[error("値は {0:?} 以下でなければなりません")]
     Lte(time::OffsetDateTime),
-    #[error("must be greater than {0:?}")]
+    #[error("値は {0:?} より大きくなければなりません")]
     Gt(time::OffsetDateTime),
-    #[error("must be greater than or equal to {0:?}")]
+    #[error("値は {0:?} 以上でなければなりません")]
     Gte(time::OffsetDateTime),
-    #[error("must be in range {0}{1:?}, {2:?}{3}")]
+    #[error("値は {0}{1:?}、{2:?}{3} の範囲内でなければなりません")]
     InRange(String, time::OffsetDateTime, time::OffsetDateTime, String),
-    #[error("must not be in range {0}{1:?}, {2:?}{3}")]
+    #[error("値は {0}{1:?}、{2:?}{3} の範囲内にあってはなりません")]
     NotInRange(String, time::OffsetDateTime, time::OffsetDateTime, String),
-    #[error("must less than current time")]
+    #[error("現在時刻より前でなければなりません")]
     LtNow,
-    #[error("must be less than now or within {0} from now")]
+    #[error("現在より前、または今から {0} 以内でなければなりません")]
     LtNowWithin(time::Duration),
-    #[error("must be greater than current time")]
+    #[error("現在時刻より後でなければなりません")]
     GtNow,
-    #[error("must be greater than now or within {0} from now")]
+    #[error("現在より後、または今から {0} 以内でなければなりません")]
     GtNowWithin(time::Duration),
-    #[error("must be within {0:?} from current time")]
+    #[error("現在時刻から {0:?} 以内でなければなりません")]
     Within(time::Duration),
 }
 

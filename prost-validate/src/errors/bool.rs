@@ -2,7 +2,7 @@ use thiserror::Error;
 
 #[derive(Debug, Clone, Error)]
 pub enum Error {
-    #[error("must be equal to {0}")]
+    #[error("値は {0} と等しくなければなりません")]
     Const(bool),
 }
 

@@ -2,11 +2,11 @@ use thiserror::Error;
 
 #[derive(Debug, Clone, Error)]
 pub enum Error {
-    #[error("must have at least {0} items")]
+    #[error("要素数は {0} 以上でなければなりません")]
     MinItems(usize),
-    #[error("must have at most {0} items")]
+    #[error("要素数は {0} 以下でなければなりません")]
     MaxItems(usize),
-    #[error("values must be unique")]
+    #[error("要素が重複してはいけません")]
     Unique,
     #[error("{0}")]
     Item(Box<crate::Error>),

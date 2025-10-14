@@ -13,7 +13,7 @@ macro_rules! list_rules {
     ($rules:ident) => {
         match &$rules.r#type {
             Some(Type::Map(rules)) => rules,
-            _ => return Err(format_err!("unexpected map rules")),
+            _ => return Err(format_err!("Map 用のルールが不正です")),
         }
     };
 }

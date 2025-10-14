@@ -14,7 +14,7 @@ macro_rules! string_rules {
     ($rules:ident) => {
         match &$rules.r#type {
             Some(Type::String(rules)) => rules,
-            _ => return Err(format_err!("unexpected string rules")),
+            _ => return Err(format_err!("String 用のルールが不正です")),
         }
     };
 }

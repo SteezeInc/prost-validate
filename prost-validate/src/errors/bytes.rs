@@ -2,31 +2,31 @@ use thiserror::Error;
 
 #[derive(Debug, Clone, Error)]
 pub enum Error {
-    #[error("must be equal to {0:?}")]
+    #[error("値は {0:?} と一致しなければなりません")]
     Const(Vec<u8>),
-    #[error("bytes length must be equal to {0}")]
+    #[error("バイト数は {0} でなければなりません")]
     Len(usize),
-    #[error("bytes length must be greater than or equal to {0}")]
+    #[error("バイト数は {0} 以上でなければなりません")]
     MinLen(usize),
-    #[error("bytes length must be less than or equal to {0}")]
+    #[error("バイト数は {0} 以下でなければなりません")]
     MaxLen(usize),
-    #[error("must match pattern {0}")]
+    #[error("パターン {0} に一致しなければなりません")]
     Pattern(String),
-    #[error("must have prefix {0:?}")]
+    #[error("接頭辞 {0:?} を持つ必要があります")]
     Prefix(Vec<u8>),
-    #[error("must have suffix {0:?}")]
+    #[error("接尾辞 {0:?} を持つ必要があります")]
     Suffix(Vec<u8>),
-    #[error("must contain {0:?}")]
+    #[error("{0:?} を含む必要があります")]
     Contains(Vec<u8>),
-    #[error("must be in {0:?}")]
+    #[error("{0:?} のいずれかでなければなりません")]
     In(Vec<Vec<u8>>),
-    #[error("must not be in {0:?}")]
+    #[error("{0:?} のいずれかであってはなりません")]
     NotIn(Vec<Vec<u8>>),
-    #[error("must be a valid IP address")]
+    #[error("有効な IP アドレスでなければなりません")]
     Ip,
-    #[error("must be a valid IPv4 address")]
+    #[error("有効な IPv4 アドレスでなければなりません")]
     Ipv4,
-    #[error("must be a valid IPv6 address")]
+    #[error("有効な IPv6 アドレスでなければなりません")]
     Ipv6,
 }
 

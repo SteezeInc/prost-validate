@@ -6,23 +6,23 @@ macro_rules! make_error {
 
             #[derive(Debug, Clone, Error)]
             pub enum Error {
-                #[error("must be equal to {0}")]
+                #[error("値は {0} と一致しなければなりません")]
                 Const($typ),
-                #[error("must be less than {0}")]
+                #[error("値は {0} 未満でなければなりません")]
                 Lt($typ),
-                #[error("must be less than or equal to {0}")]
+                #[error("値は {0} 以下でなければなりません")]
                 Lte($typ),
-                #[error("must be greater than {0}")]
+                #[error("値は {0} より大きくなければなりません")]
                 Gt($typ),
-                #[error("must be greater than or equal to {0:?}")]
+                #[error("値は {0:?} 以上でなければなりません")]
                 Gte($typ),
-                #[error("must be in range {0}{1}, {2}{3}")]
+                #[error("値は {0}{1}, {2}{3} の範囲内でなければなりません")]
                 InRange(String, $typ, $typ, String),
-                #[error("must not be in range {0}{1}, {2}{3}")]
+                #[error("値は {0}{1}, {2}{3} の範囲内にあってはなりません")]
                 NotInRange(String, $typ, $typ, String),
-                #[error("must be in {0:?}")]
+                #[error("値は {0:?} のいずれかでなければなりません")]
                 In(Vec<$typ>),
-                #[error("must not be in {0:?}")]
+                #[error("値は {0:?} のいずれかであってはなりません")]
                 NotIn(Vec<$typ>),
             }
 

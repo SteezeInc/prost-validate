@@ -20,7 +20,7 @@ where
         let val = val.unwrap_or(default);
         let rules = match &rules.r#type {
             Some(Type::Bytes(rules)) => rules,
-            _ => return Err(format_err!(name, "unexpected string rules")),
+            _ => return Err(format_err!(name, "String 用のルールが不正です")),
         };
         f(&val, rules, &name)
     }))
@@ -112,7 +112,7 @@ pub(crate) fn make_validate_bytes(
             &name,
             Arc::new(move |val: &Bytes, rules: &BytesRules, name: &String| {
                 let regex = Regex::new(rules.pattern())
-                    .map_err(|_| format_err!(name, "must be a valid regex pattern"))?;
+                    .map_err(|_| format_err!(name, "有効な正規表現でなければなりません"))?;
                 if !regex.is_match(val.iter().as_slice()) {
                     return Err(Error::new(
                         name.to_string(),

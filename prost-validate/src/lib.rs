@@ -70,7 +70,7 @@ mod tests {
         fn validate(&self) -> prost_validate::Result {
             Err(prost_validate::Error::new(
                 "",
-                prost_validate::errors::Error::InvalidRules("failed".to_string()),
+                prost_validate::errors::Error::InvalidRules("失敗しました".to_string()),
             ))
         }
     }

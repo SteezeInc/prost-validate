@@ -146,7 +146,7 @@ pub(crate) fn make_validate_message(
     fns.push(Arc::new(move |val, _, m| {
         let validate = m
             .get(&desc.full_name().to_string())
-            .ok_or(format_err!(desc.full_name(), "no validator"))?;
+            .ok_or(format_err!(desc.full_name(), "バリデータが定義されていません"))?;
         match val.map(|v| validate(&Args { msg: &v, m })) {
             Some(Err(err)) => Err(Error::new(
                 name.clone(),

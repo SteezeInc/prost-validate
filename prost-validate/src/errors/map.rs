@@ -2,15 +2,15 @@ use thiserror::Error;
 
 #[derive(Debug, Clone, Error)]
 pub enum Error {
-    #[error("length must be equal to {0}")]
+    #[error("要素数は {0} でなければなりません")]
     MinPairs(usize),
-    #[error("length must be equal to {0}")]
+    #[error("要素数は {0} でなければなりません")]
     MaxPairs(usize),
-    #[error("key: {0}")]
+    #[error("キー: {0}")]
     Keys(Box<crate::Error>),
-    #[error("value: {0}")]
+    #[error("値: {0}")]
     Values(Box<crate::Error>),
-    #[error("must no have sparse values")]
+    #[error("疎な値を含めてはいけません")]
     NoSparse,
 }
 

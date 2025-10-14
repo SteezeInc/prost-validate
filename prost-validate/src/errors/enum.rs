@@ -2,13 +2,13 @@ use thiserror::Error;
 
 #[derive(Debug, Clone, Error)]
 pub enum Error {
-    #[error("must be equal to {0:?}")]
+    #[error("値は {0:?} と一致しなければなりません")]
     Const(i32),
-    #[error("must be only one of the specified values")]
+    #[error("定義済みの値のみ使用できます")]
     DefinedOnly,
-    #[error("must be in {0:?}")]
+    #[error("値は {0:?} のいずれかでなければなりません")]
     In(Vec<i32>),
-    #[error("must not be in {0:?}")]
+    #[error("値は {0:?} のいずれかであってはなりません")]
     NotIn(Vec<i32>),
 }
 

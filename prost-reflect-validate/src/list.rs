@@ -16,7 +16,7 @@ macro_rules! list_rules {
     ($rules:ident) => {
         match &$rules.r#type {
             Some(Type::Repeated(rules)) => rules,
-            _ => return Err(format_err!("unexpected list rules")),
+            _ => return Err(format_err!("Repeated 用のルールが不正です")),
         }
     };
 }

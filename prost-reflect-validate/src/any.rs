@@ -11,7 +11,7 @@ macro_rules! any_rules {
     ($rules:ident) => {
         match &$rules.r#type {
             Some(Type::Any(rules)) => rules,
-            _ => return Err(format_err!("unexpected any rules")),
+            _ => return Err(format_err!("Any 用のルールが不正です")),
         }
     };
 }
@@ -25,7 +25,7 @@ where
         let val = match val {
             Some(v) => v
                 .transcode_to::<Any>()
-                .map_err(|_| format_err!(name, "failed to transcode to Any rules"))?,
+                .map_err(|_| format_err!(name, "Any ルールへの変換に失敗しました"))?,
             None => Any::default(),
         };
         let rules = any_rules!(rules);

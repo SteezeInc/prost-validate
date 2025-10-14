@@ -27,7 +27,7 @@ where
             _ => {
                 return Err(Error::new(
                     name.clone(),
-                    errors::Error::InvalidRules("unexpected duration rules".to_string()),
+                    errors::Error::InvalidRules("Duration 用のルールが不正です".to_string()),
                 ))
             }
         };

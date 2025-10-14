@@ -9,25 +9,25 @@ use std::str::FromStr;
 fn validate_hostname(host: &str) -> anyhow::Result<()> {
     let host = host.trim_end_matches('.').to_lowercase();
     if host.len() > 253 {
-        return Err(format_err!("hostname cannot exceed 253 characters"));
+        return Err(format_err!("ホスト名は 253 文字を超えてはいけません"));
     }
     for part in host.split('.') {
         let l = part.len();
         if l == 0 || l > 63 {
             return Err(format_err!(
-                "hostname part must be non-empty and cannot exceed 63 characters"
+                "ホスト名の各要素は空にできず、63 文字以内でなければなりません"
             ));
         }
         if part.starts_with('-') {
-            return Err(format_err!("hostname parts cannot begin with hyphens"));
+            return Err(format_err!("ホスト名の各要素はハイフンで開始してはいけません"));
         }
         if part.ends_with('-') {
-            return Err(format_err!("hostname parts cannot end with hyphens"));
+            return Err(format_err!("ホスト名の各要素はハイフンで終わってはいけません"));
         }
         for r in part.chars() {
             if !(r.is_ascii_alphanumeric() || r == '-') {
                 return Err(format_err!(
-                    "hostname parts can only contain alphanumeric characters or hyphens, got {}",
+                    "ホスト名の各要素は英数字またはハイフンのみ使用できます ({} は不可)",
                     r
                 ));
             }
@@ -98,7 +98,7 @@ where
         if IpAddr::from_str(&self.to_string()).is_ok_and(|i| i.is_ipv4()) {
             Ok(())
         } else {
-            Err(format_err!("invalid ipv4 format"))
+            Err(format_err!("IPv4 の形式が正しくありません"))
         }
     }
 
@@ -106,7 +106,7 @@ where
         if IpAddr::from_str(&self.to_string()).is_ok_and(|i| i.is_ipv6()) {
             Ok(())
         } else {
-            Err(format_err!("invalid ipv6 format"))
+            Err(format_err!("IPv6 の形式が正しくありません"))
         }
     }
 
@@ -122,7 +122,7 @@ where
         }
         match self.validate_hostname() {
             Ok(()) => Ok(()),
-            Err(_) => Err(format_err!("must be a valid hostname or ip address")),
+            Err(_) => Err(format_err!("有効なホスト名または IP アドレスでなければなりません")),
         }
     }
 
@@ -131,7 +131,7 @@ where
         if uri.scheme().is_some() {
             Ok(())
         } else {
-            Err(format_err!("URI scheme is required"))
+            Err(format_err!("URI スキームが必要です"))
         }
     }
 
@@ -145,7 +145,7 @@ where
         if UUID_RE.is_match(&self.to_string()) {
             Ok(())
         } else {
-            Err(format_err!("invalid uuid format"))
+            Err(format_err!("UUID の形式が正しくありません"))
         }
     }
 
@@ -158,7 +158,7 @@ where
         if ok {
             Ok(())
         } else {
-            Err(format_err!("invalid header name"))
+            Err(format_err!("ヘッダー名の形式が正しくありません"))
         }
     }
 
@@ -171,7 +171,7 @@ where
         if ok {
             Ok(())
         } else {
-            Err(format_err!("invalid header value"))
+            Err(format_err!("ヘッダー値の形式が正しくありません"))
         }
     }
 }

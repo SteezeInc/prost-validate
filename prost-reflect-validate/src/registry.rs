@@ -91,7 +91,7 @@ impl Registry {
                                 if has {
                                     return Err(format_err!(
                                         field.containing_oneof().unwrap().name(),
-                                        "oneof contains multiple values",
+                                        "oneof に複数の値が設定されています",
                                     ));
                                 }
                                 has = true;
@@ -100,7 +100,7 @@ impl Registry {
                         if !has {
                             return Err(format_err!(
                                 field.containing_oneof().unwrap().name(),
-                                "oneof does not contains any value",
+                                "oneof に値が設定されていません",
                             ));
                         }
                         Ok(())
@@ -183,7 +183,7 @@ impl Registry {
             f(&Args { msg, m })?;
             Ok(())
         } else {
-            Err(format_err!(msg.descriptor().full_name(), "no validator",))
+            Err(format_err!(msg.descriptor().full_name(), "バリデータが定義されていません",))
         }
     }
 }

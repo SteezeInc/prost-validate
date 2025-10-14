@@ -116,7 +116,7 @@ impl Field {
             )
         {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected rules for repeated field",
+                "{}: 繰り返しフィールド用のルールが不正です",
                 name
             )));
         }
@@ -146,7 +146,7 @@ impl Field {
         }
         if self.prost.message.is_none() && self.validation.message.is_some() {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected message rules",
+                "{}: メッセージ用のルールが不正です",
                 name
             )));
         }
@@ -161,7 +161,7 @@ impl Field {
                         )
                     {
                         return Err(darling::Error::custom(format_err!(
-                            "{}: unexpected rules for timestamp field",
+                            "{}: Timestamp フィールド用のルールが不正です",
                             name
                         )));
                     }
@@ -174,7 +174,7 @@ impl Field {
                         )
                     {
                         return Err(darling::Error::custom(format_err!(
-                            "{}: unexpected rules for duration field",
+                            "{}: Duration フィールド用のルールが不正です",
                             name
                         )));
                     }
@@ -184,7 +184,7 @@ impl Field {
                         && !matches!(self.validation.r#type.as_ref().unwrap(), FieldRules::Any(_))
                     {
                         return Err(darling::Error::custom(format_err!(
-                            "{}: unexpected rules for any field",
+                            "{}: Any フィールド用のルールが不正です",
                             name
                         )));
                     }
@@ -197,7 +197,7 @@ impl Field {
                         )
                     {
                         return Err(darling::Error::custom(format_err!(
-                            "{}: unexpected rules for string field",
+                            "{}: String フィールド用のルールが不正です",
                             name
                         )));
                     }
@@ -210,7 +210,7 @@ impl Field {
                         )
                     {
                         return Err(darling::Error::custom(format_err!(
-                            "{}: unexpected rules for bytes field",
+                            "{}: Bytes フィールド用のルールが不正です",
                             name
                         )));
                     }
@@ -223,7 +223,7 @@ impl Field {
                         )
                     {
                         return Err(darling::Error::custom(format_err!(
-                            "{}: unexpected rules for bool field",
+                            "{}: bool フィールド用のルールが不正です",
                             name
                         )));
                     }
@@ -236,7 +236,7 @@ impl Field {
                         )
                     {
                         return Err(darling::Error::custom(format_err!(
-                            "{}: unexpected rules for uint64 field",
+                            "{}: uint64 フィールド用のルールが不正です",
                             name
                         )));
                     }
@@ -249,7 +249,7 @@ impl Field {
                         )
                     {
                         return Err(darling::Error::custom(format_err!(
-                            "{}: unexpected rules for uint32 field",
+                            "{}: uint32 フィールド用のルールが不正です",
                             name
                         )));
                     }
@@ -262,7 +262,7 @@ impl Field {
                         )
                     {
                         return Err(darling::Error::custom(format_err!(
-                            "{}: unexpected rules for int64 field",
+                            "{}: int64 フィールド用のルールが不正です",
                             name
                         )));
                     }
@@ -275,7 +275,7 @@ impl Field {
                         )
                     {
                         return Err(darling::Error::custom(format_err!(
-                            "{}: unexpected rules for int32 field",
+                            "{}: int32 フィールド用のルールが不正です",
                             name
                         )));
                     }
@@ -288,7 +288,7 @@ impl Field {
                         )
                     {
                         return Err(darling::Error::custom(format_err!(
-                            "{}: unexpected rules for double field",
+                            "{}: double フィールド用のルールが不正です",
                             name
                         )));
                     }
@@ -301,7 +301,7 @@ impl Field {
                         )
                     {
                         return Err(darling::Error::custom(format_err!(
-                            "{}: unexpected rules for float field",
+                            "{}: float フィールド用のルールが不正です",
                             name
                         )));
                     }
@@ -317,7 +317,7 @@ impl Field {
             )
         {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected rules for enum field",
+                "{}: enum フィールド用のルールが不正です",
                 name
             )));
         }
@@ -329,7 +329,7 @@ impl Field {
             )
         {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected rules for bool field",
+                "{}: bool フィールド用のルールが不正です",
                 name
             )));
         }
@@ -341,7 +341,7 @@ impl Field {
             )
         {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected rules for string field",
+                "{}: String フィールド用のルールが不正です",
                 name
             )));
         }
@@ -353,7 +353,7 @@ impl Field {
             )
         {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected rules for bytes field",
+                "{}: Bytes フィールド用のルールが不正です",
                 name
             )));
         }
@@ -365,7 +365,7 @@ impl Field {
             )
         {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected rules for int32 field",
+                "{}: int32 フィールド用のルールが不正です",
                 name
             )));
         }
@@ -377,7 +377,7 @@ impl Field {
             )
         {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected rules for int64 field",
+                "{}: int64 フィールド用のルールが不正です",
                 name
             )));
         }
@@ -389,7 +389,7 @@ impl Field {
             )
         {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected rules for uint32 field",
+                "{}: uint32 フィールド用のルールが不正です",
                 name
             )));
         }
@@ -401,7 +401,7 @@ impl Field {
             )
         {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected rules for uint64 field",
+                "{}: uint64 フィールド用のルールが不正です",
                 name
             )));
         }
@@ -413,7 +413,7 @@ impl Field {
             )
         {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected rules for sint32 field",
+                "{}: sint32 フィールド用のルールが不正です",
                 name
             )));
         }
@@ -425,7 +425,7 @@ impl Field {
             )
         {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected rules for sint64 field",
+                "{}: sint64 フィールド用のルールが不正です",
                 name
             )));
         }
@@ -437,7 +437,7 @@ impl Field {
             )
         {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected rules for fixed32 field",
+                "{}: fixed32 フィールド用のルールが不正です",
                 name
             )));
         }
@@ -449,7 +449,7 @@ impl Field {
             )
         {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected rules for fixed64 field",
+                "{}: fixed64 フィールド用のルールが不正です",
                 name
             )));
         }
@@ -461,7 +461,7 @@ impl Field {
             )
         {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected rules for sfixed32 field",
+                "{}: sfixed32 フィールド用のルールが不正です",
                 name
             )));
         }
@@ -473,7 +473,7 @@ impl Field {
             )
         {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected rules for sfixed64 field",
+                "{}: sfixed64 フィールド用のルールが不正です",
                 name
             )));
         }
@@ -485,7 +485,7 @@ impl Field {
             )
         {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected rules for float field",
+                "{}: float フィールド用のルールが不正です",
                 name
             )));
         }
@@ -497,7 +497,7 @@ impl Field {
             )
         {
             return Err(darling::Error::custom(format_err!(
-                "{}: unexpected rules for double field",
+                "{}: double フィールド用のルールが不正です",
                 name
             )));
         }
