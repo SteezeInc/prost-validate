@@ -1,3 +1,10 @@
+このフォークでは、バリデーションエラー文言が主に以下の場所で英語のまま定義されています。
+
+- `prost-validate/src/errors/` 配下の各型エラー (`InvalidRules` を含む)。
+- 文字列検証ヘルパーなど、`format_err!` マクロ経由で英語メッセージを返す `prost-validate/src/string.rs`。
+- リフレクション版の補助ロジック (`prost-reflect-validate/src/*.rs`) にある `unexpected ... rules` や正規表現エラー等の文言。
+- 派生マクロが入力不正を検出した際に表示する `prost-validate-derive-core/src/field.rs` のメッセージ。
+
 ![MSRV](https://img.shields.io/badge/rustc-1.74+-blue.svg)
 [![Continuous integration](https://github.com/linka-cloud/prost-validate/actions/workflows/ci_derive.yml/badge.svg)](https://github.com/linka-cloud/prost-validate/actions/workflows/ci_derive.yml)
 ![Apache 2.0](https://img.shields.io/badge/license-Apache2.0-blue.svg)
@@ -40,124 +47,124 @@ harness derive          time:   [2.5635 ms 2.5780 ms 2.5967 ms]
 #### Global
 
 | Constraint Rule | Derive | Reflect |
-|-----------------|:------:|:-------:|
-| disabled        |   ✅    |    ✅    |
+| --------------- | :----: | :-----: |
+| disabled        |   ✅   |   ✅    |
 
 #### Numerics
 
 | Constraint Rule | Derive | Reflect |
-|-----------------|:------:|:-------:|
-| const           |   ✅    |    ✅    |
-| lt/lte/gt/gte   |   ✅    |    ✅    |
-| in/not_in       |   ✅    |    ✅    |
+| --------------- | :----: | :-----: |
+| const           |   ✅   |   ✅    |
+| lt/lte/gt/gte   |   ✅   |   ✅    |
+| in/not_in       |   ✅   |   ✅    |
 
 #### Bools
 
 | Constraint Rule | Derive | Reflect |
-|-----------------|:------:|:-------:|
-| const           |   ✅    |    ✅    |
+| --------------- | :----: | :-----: |
+| const           |   ✅   |   ✅    |
 
 #### Strings
 
 | Constraint Rule        | Derive | Reflect |
-|------------------------|:------:|:-------:|
-| const                  |   ✅    |    ✅    |
-| len/min\_len/max_len   |   ✅    |    ✅    |
-| min\_bytes/max\_bytes  |   ✅    |    ✅    |
-| pattern                |   ✅    |    ✅    |
-| prefix/suffix/contains |   ✅    |    ✅    |
-| contains/not_contains  |   ✅    |    ✅    |
-| in/not_in              |   ✅    |    ✅    |
-| email                  |   ✅    |    ✅    |
-| hostname               |   ✅    |    ✅    |
-| address                |   ✅    |    ✅    |
-| ip                     |   ✅    |    ✅    |
-| ipv4                   |   ✅    |    ✅    |
-| ipv6                   |   ✅    |    ✅    |
-| uri                    |   ✅    |    ✅    |
-| uri_ref                |   ✅    |    ✅    |
-| uuid                   |   ✅    |    ✅    |
-| well_known_regex       |   ✅    |    ✅    |
+| ---------------------- | :----: | :-----: |
+| const                  |   ✅   |   ✅    |
+| len/min_len/max_len    |   ✅   |   ✅    |
+| min_bytes/max_bytes    |   ✅   |   ✅    |
+| pattern                |   ✅   |   ✅    |
+| prefix/suffix/contains |   ✅   |   ✅    |
+| contains/not_contains  |   ✅   |   ✅    |
+| in/not_in              |   ✅   |   ✅    |
+| email                  |   ✅   |   ✅    |
+| hostname               |   ✅   |   ✅    |
+| address                |   ✅   |   ✅    |
+| ip                     |   ✅   |   ✅    |
+| ipv4                   |   ✅   |   ✅    |
+| ipv6                   |   ✅   |   ✅    |
+| uri                    |   ✅   |   ✅    |
+| uri_ref                |   ✅   |   ✅    |
+| uuid                   |   ✅   |   ✅    |
+| well_known_regex       |   ✅   |   ✅    |
 
 #### Bytes
 
 | Constraint Rule        | Derive | Reflect |
-|------------------------|:------:|:-------:|
-| const                  |   ✅    |    ✅    |
-| len/min\_len/max_len   |   ✅    |    ✅    |
-| pattern                |   ✅    |    ✅    |
-| prefix/suffix/contains |   ✅    |    ✅    |
-| in/not_in              |   ✅    |    ✅    |
-| ip                     |   ✅    |    ✅    |
-| ipv4                   |   ✅    |    ✅    |
-| ipv6                   |   ✅    |    ✅    |
+| ---------------------- | :----: | :-----: |
+| const                  |   ✅   |   ✅    |
+| len/min_len/max_len    |   ✅   |   ✅    |
+| pattern                |   ✅   |   ✅    |
+| prefix/suffix/contains |   ✅   |   ✅    |
+| in/not_in              |   ✅   |   ✅    |
+| ip                     |   ✅   |   ✅    |
+| ipv4                   |   ✅   |   ✅    |
+| ipv6                   |   ✅   |   ✅    |
 
 #### Enums
 
 | Constraint Rule | Derive | Reflect |
-|-----------------|:------:|:-------:|
-| const           |   ✅    |    ✅    |
-| defined_only    |   ✅    |    ✅    |
-| in/not_in       |   ✅    |    ✅    |
+| --------------- | :----: | :-----: |
+| const           |   ✅   |   ✅    |
+| defined_only    |   ✅   |   ✅    |
+| in/not_in       |   ✅   |   ✅    |
 
 #### Messages
 
 | Constraint Rule | Derive | Reflect |
-|-----------------|:------:|:-------:|
-| skip            |   ✅    |    ✅    |
-| required        |   ✅    |    ✅    |
+| --------------- | :----: | :-----: |
+| skip            |   ✅   |   ✅    |
+| required        |   ✅   |   ✅    |
 
 #### Repeated
 
-| Constraint Rule      | Derive | Reflect |
-|----------------------|:------:|:-------:|
-| min\_items/max_items |   ✅    |    ✅    |
-| unique               |   ✅    |    ✅    |
-| items                |   ✅    |    ✅    |
+| Constraint Rule     | Derive | Reflect |
+| ------------------- | :----: | :-----: |
+| min_items/max_items |   ✅   |   ✅    |
+| unique              |   ✅   |   ✅    |
+| items               |   ✅   |   ✅    |
 
 #### Maps
 
-| Constraint Rule      | Derive | Reflect |
-|----------------------|:------:|:-------:|
-| min\_pairs/max_pairs |   ✅    |    ✅    |
-| no_sparse            |   ❓    |    ❓    |
-| keys                 |   ✅    |    ✅    |
-| values               |   ✅    |    ✅    |
+| Constraint Rule     | Derive | Reflect |
+| ------------------- | :----: | :-----: |
+| min_pairs/max_pairs |   ✅   |   ✅    |
+| no_sparse           |   ❓   |   ❓    |
+| keys                |   ✅   |   ✅    |
+| values              |   ✅   |   ✅    |
 
 #### OneOf
 
 | Constraint Rule | Derive | Reflect |
-|-----------------|:------:|:-------:|
-| required        |   ✅    |    ✅    |
+| --------------- | :----: | :-----: |
+| required        |   ✅   |   ✅    |
 
 #### WKT Scalar Value Wrappers
 
 | Constraint Rule    | Derive | Reflect |
-|--------------------|:------:|:-------:|
-| wrapper validation |   ✅    |    ✅    |
+| ------------------ | :----: | :-----: |
+| wrapper validation |   ✅   |   ✅    |
 
 #### WKT Any
 
 | Constraint Rule | Derive | Reflect |
-|-----------------|:------:|:-------:|
-| required        |   ✅    |    ✅    |
-| in/not_in       |   ✅    |    ✅    |
+| --------------- | :----: | :-----: |
+| required        |   ✅   |   ✅    |
+| in/not_in       |   ✅   |   ✅    |
 
 #### WKT Duration
 
 | Constraint Rule | Derive | Reflect |
-|-----------------|:------:|:-------:|
-| required        |   ✅    |    ✅    |
-| const           |   ✅    |    ✅    |
-| lt/lte/gt/gte   |   ✅    |    ✅    |
-| in/not_in       |   ✅    |    ✅    |
+| --------------- | :----: | :-----: |
+| required        |   ✅   |   ✅    |
+| const           |   ✅   |   ✅    |
+| lt/lte/gt/gte   |   ✅   |   ✅    |
+| in/not_in       |   ✅   |   ✅    |
 
 #### WKT Timestamp
 
 | Constraint Rule | Derive | Reflect |
-|-----------------|:------:|:-------:|
-| required        |   ✅    |    ✅    |
-| const           |   ✅    |    ✅    |
-| lt/lte/gt/gte   |   ✅    |    ✅    |
-| lt_now/gt_now   |   ✅    |    ✅    |
-| within          |   ✅    |    ✅    |
+| --------------- | :----: | :-----: |
+| required        |   ✅   |   ✅    |
+| const           |   ✅   |   ✅    |
+| lt/lte/gt/gte   |   ✅   |   ✅    |
+| lt_now/gt_now   |   ✅   |   ✅    |
+| within          |   ✅   |   ✅    |
