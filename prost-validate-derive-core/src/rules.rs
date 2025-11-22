@@ -2,6 +2,7 @@ use crate::any::AnyRules;
 use crate::bool::BoolRules;
 use crate::bytes::BytesRules;
 use crate::duration::DurationRules;
+use crate::r#enum::EnumRules;
 use crate::field::{Context, ToValidationTokens};
 use crate::list::RepeatedRules;
 use crate::map::MapRules;
@@ -11,7 +12,6 @@ use crate::number::{
     SFixed64Rules, SInt32Rules, SInt64Rules, UInt32Rules, UInt64Rules,
 };
 use crate::oneof::OneOfRules;
-use crate::r#enum::EnumRules;
 use crate::string::StringRules;
 use crate::timestamp::TimestampRules;
 use darling::FromMeta;

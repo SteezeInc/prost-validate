@@ -8,7 +8,7 @@ use crate::wkt::{WKT, WKT_WRAPPERS};
 use anyhow::format_err;
 use darling::{FromField, FromMeta, FromVariant};
 use proc_macro2::{Ident, TokenStream};
-use quote::{quote, ToTokens};
+use quote::{ToTokens, quote};
 use syn::{Type, Variant};
 
 #[derive(Debug, Clone)]
@@ -54,7 +54,7 @@ impl Field {
         map: Option<(String, String)>,
         oneof: bool,
     ) -> Self {
-        let typ = ty.to_token_stream().to_string().replace(" ", "");
+        let typ = ty.to_token_stream().to_string().replace(' ', "");
         let mut validation = validation;
         if validation.r#type.is_none() && validation.message.is_none() {
             if map.is_some() {
@@ -81,7 +81,7 @@ impl Field {
         self.prost
             .message
             .is_true_and(|| {
-                let typ = self.ty.to_token_stream().to_string().replace(" ", "");
+                let typ = self.ty.to_token_stream().to_string().replace(' ', "");
                 WKT.contains(&typ.as_str())
             })
             .unwrap_or_default()
@@ -91,19 +91,21 @@ impl Field {
         self.prost
             .message
             .is_true_and(|| {
-                let typ = self.ty.to_token_stream().to_string().replace(" ", "");
+                let typ = self.ty.to_token_stream().to_string().replace(' ', "");
                 WKT_WRAPPERS.contains(&typ.as_str())
             })
             .unwrap_or_default()
     }
 
     pub fn is_prost_types(&self) -> bool {
-        self.is_wrapper()
-            .then(|| {
-                let typ = self.ty.to_token_stream().to_string().replace(" ", "");
+        if self.is_wrapper() {
+            {
+                let typ = self.ty.to_token_stream().to_string().replace(' ', "");
                 !typ.contains("::pbjson_types::") && !typ.contains("::google::protobuf::")
-            })
-            .unwrap_or_default()
+            }
+        } else {
+            Default::default()
+        }
     }
 
     pub fn validate(&self) -> darling::Result<()> {
@@ -120,25 +122,26 @@ impl Field {
                 name
             )));
         }
-        if self.prost.repeated && self.validation.r#type.is_some() {
-            if let FieldRules::Repeated(rules) = self.validation.r#type.as_ref().unwrap() {
-                if let Some(ref rules) = rules.items {
-                    return Field {
-                        prost: ProstField {
-                            repeated: false,
-                            ..self.prost.clone()
-                        },
-                        validation: FieldValidation {
-                            message: rules.message,
-                            r#type: rules.r#type.clone(),
-                            ..FieldValidation::default()
-                        },
-                        ..self.clone()
-                    }
-                    .validate();
+        if self.prost.repeated
+            && self.validation.r#type.is_some()
+            && let FieldRules::Repeated(rules) = self.validation.r#type.as_ref().unwrap()
+        {
+            if let Some(ref rules) = rules.items {
+                return Field {
+                    prost: ProstField {
+                        repeated: false,
+                        ..self.prost.clone()
+                    },
+                    validation: FieldValidation {
+                        message: rules.message,
+                        r#type: rules.r#type.clone(),
+                        ..FieldValidation::default()
+                    },
+                    ..self.clone()
                 }
-                return Ok(());
+                .validate();
             }
+            return Ok(());
         }
         // TODO(adphi): implement
         if self.map {
@@ -151,7 +154,7 @@ impl Field {
             )));
         }
         if self.prost.message.is_some() {
-            let typ = self.ty.to_token_stream().to_string().replace(" ", "");
+            let typ = self.ty.to_token_stream().to_string().replace(' ', "");
             match typ.as_str() {
                 "::core::option::Option<::prost_types::Timestamp>" => {
                     if self.validation.r#type.is_some()
@@ -587,13 +590,13 @@ impl ToTokens for Field {
             } else if ctx.oneof {
                 if ctx.optional {
                     quote! {
-                        if let Some(Self::#ident(ref #name)) = self {
+                        if let Some(Self::#ident(#name)) = self {
                             #body
                         }
                     }
                 } else {
                     quote! {
-                        if let Self::#ident(ref #name) = self {
+                        if let Self::#ident(#name) = self {
                             #body
                         }
                     }
@@ -602,7 +605,7 @@ impl ToTokens for Field {
                 if ctx.wrapper && !ctx.prost_types {
                     quote! {
                         #required
-                        if let Some(ref #name) = self.#name {
+                        if let Some(#name) = self.#name.as_ref() {
                             let #name = &#name.value;
                             #body
                         }
@@ -610,7 +613,7 @@ impl ToTokens for Field {
                 } else {
                     quote! {
                         #required
-                        if let Some(ref #name) = self.#name {
+                        if let Some(#name) = self.#name.as_ref() {
                             #body
                         }
                     }

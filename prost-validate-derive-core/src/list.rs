@@ -1,4 +1,4 @@
-use crate::field::{with_ignore_empty, Context, FieldValidationInner, ToValidationTokens};
+use crate::field::{Context, FieldValidationInner, ToValidationTokens, with_ignore_empty};
 use crate::utils::IsTrueAnd;
 use darling::FromMeta;
 use proc_macro2::{Ident, TokenStream};

@@ -34,6 +34,7 @@ impl From<Error> for tonic_types::FieldViolation {
         Self {
             field: value.field,
             description: value.details.to_string(),
+            ..tonic_types::FieldViolation::default()
         }
     }
 }
@@ -124,8 +125,8 @@ mod tests {
     #[test]
     #[allow(clippy::unwrap_used)]
     fn test_status() {
-        use crate::errors::message;
         use crate::Error;
+        use crate::errors::message;
         use tonic_types::StatusExt;
 
         let status: tonic::Status = Error::new("field", message::Error::Required).into();

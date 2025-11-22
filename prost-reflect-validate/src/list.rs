@@ -1,11 +1,11 @@
 use crate::field::make_validate_field;
-use crate::registry::{NestedValidationFn, ValidationFn, REGISTRY};
+use crate::registry::{NestedValidationFn, REGISTRY, ValidationFn};
 use itertools::Itertools;
 use prost_reflect::bytes::Bytes;
 use prost_reflect::{FieldDescriptor, Kind, Value};
+use prost_validate::Error;
 use prost_validate::errors::list;
 use prost_validate::format_err;
-use prost_validate::Error;
 use prost_validate_types::field_rules::Type;
 use prost_validate_types::{FieldRules, RepeatedRules};
 use std::borrow::Cow;
@@ -116,10 +116,10 @@ pub(crate) fn make_validate_list(
                           _: &RepeatedRules,
                           name: &String,
                           _: &HashMap<String, ValidationFn>| {
-                        if let Some(v) = unique_count(vals, &field) {
-                            if vals.len() != v {
-                                return Err(Error::new(name.to_string(), list::Error::Unique));
-                            }
+                        if let Some(v) = unique_count(vals, &field)
+                            && vals.len() != v
+                        {
+                            return Err(Error::new(name.to_string(), list::Error::Unique));
                         }
                         Ok(true)
                     },

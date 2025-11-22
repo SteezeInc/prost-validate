@@ -2,7 +2,7 @@ use crate::registry::FieldValidationFn;
 use prost::bytes::Bytes;
 use prost_reflect::FieldDescriptor;
 use prost_validate::errors::bytes;
-use prost_validate::{format_err, Error};
+use prost_validate::{Error, format_err};
 use prost_validate_types::bytes_rules::WellKnown;
 use prost_validate_types::field_rules::Type;
 use prost_validate_types::{BytesRules, FieldRules};

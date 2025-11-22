@@ -19,10 +19,14 @@ fn validate_hostname(host: &str) -> anyhow::Result<()> {
             ));
         }
         if part.starts_with('-') {
-            return Err(format_err!("ホスト名の各要素はハイフンで開始してはいけません"));
+            return Err(format_err!(
+                "ホスト名の各要素はハイフンで開始してはいけません"
+            ));
         }
         if part.ends_with('-') {
-            return Err(format_err!("ホスト名の各要素はハイフンで終わってはいけません"));
+            return Err(format_err!(
+                "ホスト名の各要素はハイフンで終わってはいけません"
+            ));
         }
         for r in part.chars() {
             if !(r.is_ascii_alphanumeric() || r == '-') {
@@ -122,7 +126,9 @@ where
         }
         match self.validate_hostname() {
             Ok(()) => Ok(()),
-            Err(_) => Err(format_err!("有効なホスト名または IP アドレスでなければなりません")),
+            Err(_) => Err(format_err!(
+                "有効なホスト名または IP アドレスでなければなりません"
+            )),
         }
     }
 

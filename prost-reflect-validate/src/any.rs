@@ -2,7 +2,7 @@ use crate::registry::NestedValidationFn;
 use prost_reflect::{DynamicMessage, FieldDescriptor};
 use prost_types::Any;
 use prost_validate::errors::any;
-use prost_validate::{format_err, Error};
+use prost_validate::{Error, format_err};
 use prost_validate_types::field_rules::Type;
 use prost_validate_types::{AnyRules, FieldRules};
 use std::sync::Arc;

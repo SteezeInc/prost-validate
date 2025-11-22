@@ -1,8 +1,8 @@
 use crate::registry::FieldValidationFn;
 use prost_reflect::FieldDescriptor;
-use prost_validate::errors::string;
 use prost_validate::ValidateStringExt;
-use prost_validate::{format_err, Error};
+use prost_validate::errors::string;
+use prost_validate::{Error, format_err};
 use prost_validate_types::field_rules::Type;
 use prost_validate_types::string_rules::WellKnown;
 use prost_validate_types::{FieldRules, KnownRegex, StringRules};
@@ -156,7 +156,7 @@ pub(crate) fn make_validate_string(
                         return Err(Error::new(
                             name.to_string(),
                             string::Error::Pattern(err.to_string()),
-                        ))
+                        ));
                     }
                 };
                 if !regex.is_match(val.as_str()) {

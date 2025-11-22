@@ -6,12 +6,12 @@ use crate::number::{
     make_validate_double, make_validate_float, make_validate_i32, make_validate_i64,
     make_validate_u32, make_validate_u64,
 };
-use crate::registry::{Args, NestedValidationFn, ValidationFn, REGISTRY};
+use crate::registry::{Args, NestedValidationFn, REGISTRY, ValidationFn};
 use crate::string::make_validate_string;
 use crate::timestamp::make_validate_timestamp;
 use prost_reflect::{DynamicMessage, FieldDescriptor, Kind};
 use prost_validate::errors::message;
-use prost_validate::{format_err, Error};
+use prost_validate::{Error, format_err};
 use prost_validate_types::FieldRules;
 use std::collections::HashMap;
 use std::sync::Arc;
@@ -127,14 +127,14 @@ pub(crate) fn make_validate_message(
         "google.protobuf.Int64Value" => return make_validate_wrapper!(make_validate_i64, as_i64),
         "google.protobuf.Int32Value" => return make_validate_wrapper!(make_validate_i32, as_i32),
         "google.protobuf.DoubleValue" => {
-            return make_validate_wrapper!(make_validate_double, as_f64)
+            return make_validate_wrapper!(make_validate_double, as_f64);
         }
         "google.protobuf.FloatValue" => return make_validate_wrapper!(make_validate_float, as_f32),
         "google.protobuf.Timestamp" => {
-            return append!(fns, make_validate_timestamp(field, field_rules))
+            return append!(fns, make_validate_timestamp(field, field_rules));
         }
         "google.protobuf.Duration" => {
-            return append!(fns, make_validate_duration(field, field_rules))
+            return append!(fns, make_validate_duration(field, field_rules));
         }
         "google.protobuf.Any" => return append!(fns, make_validate_any(field, field_rules)),
         _ => {}
@@ -144,9 +144,10 @@ pub(crate) fn make_validate_message(
     }
     let name = Arc::new(field.full_name().to_string());
     fns.push(Arc::new(move |val, _, m| {
-        let validate = m
-            .get(&desc.full_name().to_string())
-            .ok_or(format_err!(desc.full_name(), "バリデータが定義されていません"))?;
+        let validate = m.get(&desc.full_name().to_string()).ok_or(format_err!(
+            desc.full_name(),
+            "バリデータが定義されていません"
+        ))?;
         match val.map(|v| validate(&Args { msg: &v, m })) {
             Some(Err(err)) => Err(Error::new(
                 name.clone(),

@@ -5,7 +5,6 @@
 - リフレクション版の補助ロジック (`prost-reflect-validate/src/*.rs`) にある `unexpected ... rules` や正規表現エラー等の文言。
 - 派生マクロが入力不正を検出した際に表示する `prost-validate-derive-core/src/field.rs` のメッセージ。
 
-![MSRV](https://img.shields.io/badge/rustc-1.74+-blue.svg)
 [![Continuous integration](https://github.com/linka-cloud/prost-validate/actions/workflows/ci_derive.yml/badge.svg)](https://github.com/linka-cloud/prost-validate/actions/workflows/ci_derive.yml)
 ![Apache 2.0](https://img.shields.io/badge/license-Apache2.0-blue.svg)
 

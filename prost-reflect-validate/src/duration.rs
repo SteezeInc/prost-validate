@@ -3,7 +3,7 @@ use prost_reflect::{DynamicMessage, FieldDescriptor};
 use prost_types::Duration;
 use prost_validate::errors::{duration, message};
 use prost_validate::utils::AsDuration;
-use prost_validate::{errors, Error};
+use prost_validate::{Error, errors};
 use prost_validate_types::field_rules::Type;
 use prost_validate_types::{DurationRules, FieldRules};
 use std::sync::Arc;
@@ -28,7 +28,7 @@ where
                 return Err(Error::new(
                     name.clone(),
                     errors::Error::InvalidRules("Duration 用のルールが不正です".to_string()),
-                ))
+                ));
             }
         };
         f(val, rules, &name)

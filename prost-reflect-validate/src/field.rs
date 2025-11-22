@@ -1,12 +1,12 @@
 use crate::bool::make_validate_bool;
 use crate::bytes::make_validate_bytes;
+use crate::r#enum::make_validate_enum;
 use crate::message::make_validate_message;
 use crate::number::{
     make_validate_double, make_validate_fixed32, make_validate_fixed64, make_validate_float,
     make_validate_i32, make_validate_i64, make_validate_sfixed32, make_validate_sfixed64,
     make_validate_sint32, make_validate_sint64, make_validate_u32, make_validate_u64,
 };
-use crate::r#enum::make_validate_enum;
 use crate::registry::ValidationFn;
 use crate::string::make_validate_string;
 use prost_reflect::{FieldDescriptor, Kind, Value};

@@ -1,8 +1,8 @@
 use crate::field::Field;
-use darling::ast::Data;
 use darling::FromDeriveInput;
+use darling::ast::Data;
 use proc_macro2::TokenStream;
-use quote::{quote, ToTokens};
+use quote::{ToTokens, quote};
 use syn::DeriveInput;
 
 #[derive(Debug, FromDeriveInput, Clone)]

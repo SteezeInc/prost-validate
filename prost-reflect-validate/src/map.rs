@@ -1,8 +1,8 @@
 use crate::field::make_validate_field;
-use crate::registry::{NestedValidationFn, ValidationFn, REGISTRY};
+use crate::registry::{NestedValidationFn, REGISTRY, ValidationFn};
 use prost_reflect::{FieldDescriptor, Kind, MapKey, Value};
 use prost_validate::errors::map;
-use prost_validate::{format_err, Error};
+use prost_validate::{Error, format_err};
 use prost_validate_types::field_rules::Type;
 use prost_validate_types::{FieldRules, MapRules};
 use std::borrow::Cow;

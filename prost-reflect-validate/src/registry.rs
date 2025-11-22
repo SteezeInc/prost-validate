@@ -5,7 +5,7 @@ use crate::utils::{get_field_rules, is_set};
 use no_deadlocks::RwLock;
 use once_cell::sync::Lazy;
 use prost_reflect::{DynamicMessage, MessageDescriptor, OneofDescriptor, ReflectMessage};
-use prost_validate::{format_err, Result};
+use prost_validate::{Result, format_err};
 use prost_validate_types::FieldRules;
 use prost_validate_types::{MessageRulesExt, OneofRulesExt};
 use std::collections::HashMap;
@@ -183,7 +183,10 @@ impl Registry {
             f(&Args { msg, m })?;
             Ok(())
         } else {
-            Err(format_err!(msg.descriptor().full_name(), "バリデータが定義されていません",))
+            Err(format_err!(
+                msg.descriptor().full_name(),
+                "バリデータが定義されていません",
+            ))
         }
     }
 }

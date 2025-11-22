@@ -16,7 +16,7 @@ members = [
 [workspace.package]
 version = "0.2.7"
 authors = ["Adphi"]
-edition = "2021"
+edition = "2024"
 description = ""
 documentation = ""
 license = "Apache-2.0"
@@ -25,28 +25,28 @@ repository = "https://github.com/linka-cloud/prost-validate"
 [workspace.dependencies]
 prost = "0.14.1"
 prost-build = "0.14.1"
+tonic-prost-build = "0.14.2"
 prost-types = "0.14.1"
-prost-reflect = { version = "0.16.1", features = ["derive", "serde"] }
+prost-reflect = { version = "0.16.2", features = ["derive", "serde"] }
 prost-reflect-build = "0.16.0"
 tonic = "0.14.2"
 tonic-types = "0.14.2"
 tonic-build = "0.14.2"
-tonic-prost-build = "0.14.2"
 tonic-prost = "0.14.2"
 anyhow = "1.0.86"
-thiserror = "1.0.63"
+thiserror = "2.0.17"
 http = "1.1.0"
-itertools = "0.13.0"
+itertools = "0.14.0"
 once_cell = "1.19.0"
 regex = "1.10.6"
 time = "0.3.36"
 email_address = "0.2.9"
-criterion = { version = "0.5", features = ["html_reports"] }
+criterion = { version = "0.7", features = ["html_reports"] }
 syn = "2"
 quote = "1"
 proc-macro2 = "1"
 proc-macro-error = "1"
-darling = { version = "0.20", features = ["suggestions"] }
+darling = { version = "0.21.3", features = ["suggestions"] }
 pbjson-build = "0.8.0"
 pbjson = { version = "0.8.0" }
 pbjson-types = "0.8.0"

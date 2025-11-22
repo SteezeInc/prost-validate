@@ -1,9 +1,9 @@
 use crate::registry::FieldValidationFn;
 use prost_reflect::FieldDescriptor;
-use prost_validate::errors::r#bool;
 use prost_validate::Error;
-use prost_validate_types::field_rules::Type;
+use prost_validate::errors::r#bool;
 use prost_validate_types::FieldRules;
+use prost_validate_types::field_rules::Type;
 use std::sync::Arc;
 
 pub(crate) fn make_validate_bool(

@@ -1,16 +1,21 @@
 use crate::registry::FieldValidationFn;
 use prost_reflect::FieldDescriptor;
-use prost_validate::format_err;
 use prost_validate::Error;
-use prost_validate_types::field_rules::Type;
+use prost_validate::format_err;
 use prost_validate_types::FieldRules;
+use prost_validate_types::field_rules::Type;
 use std::sync::Arc;
 
 macro_rules! number_rules {
     ($rules:ident,$enum_value:ident) => {
         match &$rules.r#type {
             Some(Type::$enum_value(rules)) => rules,
-            _ => return Err(format_err!("{} 用のルールが不正です", stringify!($enum_value))),
+            _ => {
+                return Err(format_err!(
+                    "{} 用のルールが不正です",
+                    stringify!($enum_value)
+                ))
+            }
         }
     };
 }

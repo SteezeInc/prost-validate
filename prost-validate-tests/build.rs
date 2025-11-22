@@ -31,10 +31,10 @@ fn main() -> Result<()> {
             .map(|e| e.path().to_str().unwrap().to_string())
             .filter(|e| e.ends_with(".proto"))
             .collect::<Vec<String>>();
-        gen(
+        r#gen(
             dir.strip_prefix("proto/")
                 .unwrap()
-                .replace("/", "_")
+                .replace('/', "_")
                 .as_str(),
             &files,
             &includes,
@@ -44,7 +44,7 @@ fn main() -> Result<()> {
     Ok(())
 }
 
-fn gen(name: &str, files: &[String], includes: &[&str]) -> Result<()> {
+fn r#gen(name: &str, files: &[String], includes: &[&str]) -> Result<()> {
     if files.is_empty() {
         return Ok(());
     }

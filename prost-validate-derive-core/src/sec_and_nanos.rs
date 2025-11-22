@@ -45,15 +45,15 @@ impl FromMeta for SecsAndNanos {
         SecsAndNanosInner::from_list(items).map(SecsAndNanos)
     }
     fn from_expr(expr: &Expr) -> Result<Self> {
-        match *expr {
-            Expr::Lit(ref lit) => Self::from_value(&lit.lit),
-            Expr::Group(ref group) => Self::from_expr(&group.expr),
-            Expr::Paren(ref paren) => {
+        match expr {
+            Expr::Lit(lit) => Self::from_value(&lit.lit),
+            Expr::Group(group) => Self::from_expr(&group.expr),
+            Expr::Paren(paren) => {
                 let meta = NestedMeta::parse_meta_list(paren.expr.to_token_stream())
                     .map_err(darling::Error::custom)?;
                 Self::from_list(meta.as_slice())
             }
-            Expr::Tuple(ref tuple) => {
+            Expr::Tuple(tuple) => {
                 let meta = NestedMeta::parse_meta_list(tuple.elems.to_token_stream())
                     .map_err(darling::Error::custom)?;
                 Self::from_list(meta.as_slice())

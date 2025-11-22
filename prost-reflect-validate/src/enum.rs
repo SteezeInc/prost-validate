@@ -1,7 +1,7 @@
 use crate::registry::FieldValidationFn;
 use prost_reflect::{FieldDescriptor, Kind};
 use prost_validate::errors::r#enum;
-use prost_validate::{format_err, Error, Result};
+use prost_validate::{Error, Result, format_err};
 use prost_validate_types::field_rules::Type;
 use prost_validate_types::{EnumRules, FieldRules};
 use std::sync::Arc;

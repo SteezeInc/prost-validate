@@ -1,4 +1,4 @@
-use crate::field::{with_ignore_empty, Context, ToValidationTokens};
+use crate::field::{Context, ToValidationTokens, with_ignore_empty};
 use darling::FromMeta;
 use proc_macro2::{Ident, Span, TokenStream};
 use prost_validate_types::bytes_rules;

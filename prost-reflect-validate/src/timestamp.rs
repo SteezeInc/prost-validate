@@ -3,7 +3,7 @@ use prost_reflect::{DynamicMessage, FieldDescriptor};
 use prost_types::Timestamp;
 use prost_validate::errors::{message, timestamp};
 use prost_validate::utils::{AsDateTime, AsDuration};
-use prost_validate::{errors, Error};
+use prost_validate::{Error, errors};
 use prost_validate_types::field_rules::Type;
 use prost_validate_types::{FieldRules, TimestampRules};
 use std::sync::Arc;
@@ -29,7 +29,7 @@ where
                 return Err(Error::new(
                     name.to_string(),
                     errors::Error::InvalidRules("Timestamp 用のルールが不正です".to_string()),
-                ))
+                ));
             }
         };
         f(&val, &rules, &name)
